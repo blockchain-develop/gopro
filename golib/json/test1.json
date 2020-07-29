@@ -1,0 +1,34 @@
+{
+  "tokens":[
+    {
+      "name":"btc",
+      "contracts":[
+        {
+          "address":"0000000000000000000000000000000000000011",
+          "chain":1
+        },
+        {
+          "address":"700CA49ccA3803316124D2A8a44498ABB3E9cF51",
+          "chain":2
+        },
+        {
+          "address":"b7f398711664de1dd685d9ba3eee3b6b830a7d83",
+          "chain":3
+        }
+      ]
+    },
+    {
+      "name":"btc",
+      "contracts":[
+        {
+          "address":"700CA49ccA3803316124D2A8a44498ABB3E9cF51",
+          "chain":2
+        },
+        {
+          "address":"b7f398711664de1dd685d9ba3eee3b6b830a7d83",
+          "chain":3
+        }
+      ]
+    }
+  ]
+}

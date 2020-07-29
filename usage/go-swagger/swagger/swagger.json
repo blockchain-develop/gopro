@@ -1,0 +1,127 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "cross chain explorer api",
+    "description": "cross chain explorer api.",
+    "contact": {
+      "email": "tangaoyuan@onchain.com"},
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/getexample": {
+      "get": {
+        "description": "This is an getexample route",
+        "tags": [
+          "tag"
+        ],
+        "summary": "getexample route",
+        "operationId": "GetExampleRequest",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Id",
+            "name": "id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/GetExampleResponse"
+          }
+        }
+      }
+    },
+    "/postexample": {
+      "post": {
+        "description": "This is an postexample route",
+        "tags": [
+          "tag"
+        ],
+        "summary": "postexample route",
+        "operationId": "PostExampleRequest",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "x-go-name": "Id"
+                },
+                "name": {
+                  "type": "string",
+                  "x-go-name": "Name"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/PostExampleResponse"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "GetExampleResponse": {
+      "description": "getexample api response",
+      "schema": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "description": "the code og response",
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Code"
+          },
+          "data": {
+            "description": "response data",
+            "type": "object",
+            "x-go-name": "Data"
+          },
+          "message": {
+            "description": "the message of response",
+            "type": "string",
+            "x-go-name": "Message"
+          }
+        }
+      }
+    },
+    "PostExampleResponse": {
+      "description": "postexample api response",
+      "schema": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "description": "the code og response",
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Code"
+          },
+          "data": {
+            "description": "response data",
+            "type": "object",
+            "x-go-name": "Data"
+          },
+          "message": {
+            "description": "the message of response",
+            "type": "string",
+            "x-go-name": "Message"
+          }
+        }
+      }
+    }
+  }
+}
