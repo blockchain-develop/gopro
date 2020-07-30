@@ -135,3 +135,34 @@ unordered_map/unordered_multimap的区别：unordered_map支持唯一key，每�
 缺点：
 1. 不能进行随机访问，即不支持索引的[]操作符和at()
 2. 不支持直接修改一个元素的key
+
+## redis数据结构
+
+### hash
+hash对象采用ziplist或者hashtable来实现。
+
+这种结构类似go的map和c++中的unordered_map。
+
+当两个或者以上的key被分配到hashtable的同一个索引上时，会产生hash冲突，redis使用最常用的链地址法来解决key冲突。
+
+hash带有两个hashtable，随着对hash的操作，key会逐渐增多或者减少，为了让hashtable的负载因子维持在一个合理范围内，redis会对hashtable的大小进行扩容或者收缩，这需要rehash，redis采用的是多次、渐进的rehash。
+
+图解：redis hash：
+![redis hash](pic/redis.hash.jpg "redis hash")
+
+### list
+list对象采用ziplist或者linkedlist来实现。
+
+redis的list支持在两端插入和弹出，可以获取指定位置或者范围的元素。
+
+图解：redis list：
+![redis list](pic/redis.list.jpg "redis list")
+
+### set
+set对象采用intset或者hashtable来实现。
+
+### zset
+zset对象采用ziplist或者skiplist来实现。
+
+图解：redis skiplist:
+![redis skip list](pic/redis.skiplist.jpg "redis skip list")

@@ -25,3 +25,9 @@ fperf是一个压测框架，[git](https://github.com/fperf/fperf)
 + tracing
 + circuitbreaker
 + rate-limiter
+
+## gofmt
+
+```
+find ./ -name "*.go" | xargs gofmt -w -l
+```
