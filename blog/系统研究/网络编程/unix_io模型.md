@@ -153,7 +153,7 @@ IO multiplexing就是我们常说的select，poll，epoll，有些地方也称�
 ### 信号驱动式IO模型(signal-driven IO model)
 首先我们允许 socket 进行信号驱动 I/O,并安装一个信号处理函数，进程继续运行并不阻塞。当数据准备好时，进程会收到一个SIGIO信号，可以在信号处理函数中调用 I/O 操作函数处理数据。
 
-![singal driven io model](singal.driven.io.model.png)
+![singal driven io model](pic/singal.driven.io.model.png)
 
 但是这种IO模确用的不多，所以我这里也就不详细提它了。
 
