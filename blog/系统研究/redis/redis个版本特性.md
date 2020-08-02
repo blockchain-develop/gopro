@@ -21,3 +21,11 @@
 ### 应用特性
 + 支持key的过期设置。
 + 支持算法命令sort。
+
+## Redis 2.4
+
++ 增加慢日志记录
++ 增加bio(background IO service),将必要的操作放入到后台运行。目前只支持一个，close系统调用。更多[BIO](https://blog.csdn.net/weixin_34008784/article/details/91369148)
+
+## 参考
+[Redis之各版本特性](https://www.cnblogs.com/xingxia/p/redis_versions.html)
