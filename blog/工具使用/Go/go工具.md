@@ -18,6 +18,11 @@ fperf是一个压测框架，[git](https://github.com/fperf/fperf)
 + beego
 + go-kit
 
+## 数据库中间件
++ [gorm](https://github.com/go-gorm/gorm)
++ [xorm]
++ [gormat](https://github.com/airplayx/gormat)
+
 ## 服务拦截器
 
 + log

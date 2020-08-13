@@ -53,5 +53,18 @@ func TestJson(t *testing.T) {
 }
 
 func TestJson2(t *testing.T) {
+	var test = [3]string {"aaa", "bbb", "ccc"}
+	test_json, err := json.Marshal(test)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("test json: %s\n", string(test_json))
 
+	test1_json := string(test_json)
+	test1 := make([]string, 0)
+	err = json.Unmarshal([]byte(test1_json), &test1)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("test1 slice: %v\n", test1)
 }
