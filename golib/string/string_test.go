@@ -4,6 +4,7 @@ import (
 	"encoding/hex"
 	"fmt"
 	"reflect"
+	"strconv"
 	"strings"
 	"testing"
 	"time"
@@ -169,8 +170,8 @@ func TestString9(t *testing.T) {
 }
 
 func TestStringLower(t *testing.T) {
-	aa := "0x388Ed8B73bd707A78034E1d157fA08Da24095c18"
-	bb := strings.ToLower(aa)
+	aa := "a719d5689ba73c478427a471c7d3b02aea9a8e45c0d44a6edd6f6e8898171ef0 "
+	bb := strings.ToUpper(aa)
 	fmt.Printf("before lower: %s, after lower: %s\n", aa, bb)
 }
 
@@ -184,4 +185,11 @@ func TestStringReverse(t *testing.T) {
 	}
 	fmt.Printf("old string: %s\n", aa)
 	fmt.Printf("new string: %s\n", hex.EncodeToString(cc))
+}
+
+func TestStringDecode(t *testing.T) {
+	xx := "00dfbd286c"
+	//bb, _ := hex.DecodeString(xx)
+	cc, _ := strconv.ParseUint(xx, 16, 32)
+	fmt.Printf("xxxx: %d\n", cc)
 }

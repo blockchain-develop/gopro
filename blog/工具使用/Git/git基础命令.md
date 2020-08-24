@@ -4,6 +4,7 @@
 
 创建tag:
 git tag -a v1.0.0 -m "xxxxxxxx"
+git tag -a v1.0.0 -m "version 1.0.0" 22860ed0e57465015b4a47c2f2d3be3d392e8dfc
 
 推动tag:
 git push origin v1.0.0

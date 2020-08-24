@@ -36,3 +36,6 @@ fperf是一个压测框架，[git](https://github.com/fperf/fperf)
 ```
 find ./ -name "*.go" | xargs gofmt -w -l
 ```
+
+## 在windows下跨平台编译linux
+GOOS=linux;GOARCH=amd64;CGO_ENABLED=0
