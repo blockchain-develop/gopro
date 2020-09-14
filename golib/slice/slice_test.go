@@ -305,3 +305,60 @@ func TestSlice19(t *testing.T) {
 		which[10 + i] = byte(i)
 	}
 }
+
+/*
+以下测试指针的slice和对象slice
+*/
+type AAA struct {
+	aaa    int
+	bbb    int
+}
+
+func TestSlice20(t *testing.T) {
+	test1 := []*AAA{
+		&AAA {
+			aaa: 0,
+			bbb: 0,
+		},
+		&AAA {
+			aaa: 1,
+			bbb: 1,
+		},
+	}
+	test2 := make([]*AAA, 0, 2)
+	test2 = append(test2, test1...)
+	for _, item := range test2 {
+		item.aaa = item.aaa + 10
+		item.bbb = item.bbb + 10
+	}
+
+	fmt.Printf("test1:\n")
+	for _, item := range test1 {
+		fmt.Printf("aaa: %d, bbb: %d\n", item.aaa, item.bbb)
+	}
+	fmt.Printf("test2:\n")
+	for _, item := range test2 {
+		fmt.Printf("aaa: %d, bbb: %d\n", item.aaa, item.bbb)
+	}
+}
+
+func TestSlice21(t *testing.T) {
+	a := [2]int{5, 6}
+	b := [2]int{5, 6}
+
+	// ①
+	if a == b {
+		fmt.Println("equal")
+	} else {
+		fmt.Println("not equal")
+	}
+
+	/*
+	// ②
+	if a[:] == b[:] {
+		fmt.Println("equal")
+	} else {
+		fmt.Println("not equal")
+	}
+	*/
+}

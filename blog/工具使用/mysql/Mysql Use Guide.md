@@ -25,3 +25,39 @@ flush privileges;
 ```
 service mysql restart
 ```
+
+2. 配置远程登录
+
+mysql默认监听的地址是127.0.0.1，首先需要配置监听地址。
+
+修改/etc/mysql/mysql.conf.d/mysqld.cnf中的配置项，去掉指定的监听地址  "bind-address          = 127.0.0.1".
+
+这时远程访问，还是会出现以下错误
+```
+ERROR 1130 (HY000): Host '172.168.3.79' is not allowed to connect to this MySQL server
+```
+
+这是由于mysql访问控制引起的，MySQL不允许远程登录。
+
+```
+ update user set host = '%' where user = 'root';
+ flush privileges;
+```
+
+重启mysql
+```
+service mysql restart
+```
+
+3.
+
+
+
+## mysql数据导入和导出
+
+mysqldump -u root -p --databases cross_chain_explorer > cross_chain_explorer_sql
+
+mysql -u root -p cross_chain_explorer < cross_chain_explorer_sql
+
+
+alter table table_sample change col_sample col_sample varchar(6);

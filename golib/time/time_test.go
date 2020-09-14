@@ -2,6 +2,8 @@ package time
 
 import (
 	"fmt"
+	"github.com/ethereum/go-ethereum/common/math"
+	"math/big"
 	"testing"
 	"time"
 )
@@ -28,7 +30,7 @@ func TestTime2(t *testing.T) {
 }
 
 func TestTime3(t *testing.T) {
-	time_t := time.Unix(1592956800, 0)
+	time_t := time.Unix(1598583600, 0)
 	time_unix := time_t.Unix()
 	time_str := time_t.Format("2006-01-02 15:04:05")
 	fmt.Printf("current time, unix: %d, str: %s\n", time_unix, time_str)
@@ -74,16 +76,11 @@ func TestTimeDays(t *testing.T) {
 	fmt.Printf("old time, unix: %d, str: %s, new time, unix: %d, str: %s\n", time_unix, time_str, time_unix_new, time_str_new)
 }
 
-
-
-
-
-
-
-
-
-
-
+func TestTimeElement(t *testing.T) {
+	time_t := time.Now()
+	fmt.Printf("year: %d, month: %d, day: %d, hour: %d, minute: %d, second: %d\n",
+		time_t.Year(), time_t.Month(), time_t.Day(), time_t.Hour(), time_t.Minute(), time_t.Second())
+}
 
 func  DayOfTimeDown(t uint32) uint32 {
 	end_t := time.Unix(int64(t), 0)
@@ -115,84 +112,24 @@ func  DayOfTimeSubOne(t uint32) uint32 {
 	return time_t_unix
 }
 
-func outputCrossChainTxStatus(status []*CrossChainTxStatus, start uint32, end uint32, total uint32) []*CrossChainTxStatus {
-	current_txnumber := total
-	current_tt := uint32(0)
-	status_new := make([]*CrossChainTxStatus, 0)
-	for _, s := range status {
-		status_new = append(status_new, &CrossChainTxStatus{
-			TT: s.TT,
-			TxNumber: current_txnumber,
-		})
-		current_txnumber = current_txnumber - s.TxNumber
-		current_tt = s.TT
-	}
-	status_new = append(status_new, &CrossChainTxStatus{
-		TT: DayOfTimeSubOne(current_tt),
-		TxNumber: current_txnumber,
-	})
-
-	status_new1 := make([]*CrossChainTxStatus, 0)
-	if len(status_new) != 0 {
-		current_txnumber = status_new[0].TxNumber
-		current_tt := status_new[0].TT
-		for _, s := range status_new {
-			for s.TT < current_tt {
-				status_new1 = append(status_new1, &CrossChainTxStatus{
-					TT:       current_tt,
-					TxNumber: current_txnumber,
-				})
-				current_tt = DayOfTimeSubOne(current_tt)
-			}
-
-			current_txnumber = s.TxNumber
-			status_new1 = append(status_new1, &CrossChainTxStatus{
-				TT:       current_tt,
-				TxNumber: current_txnumber,
-			})
-			current_tt = DayOfTimeSubOne(current_tt)
-		}
-	}
-
-	status_new = make([]*CrossChainTxStatus, 0)
-	if len(status_new1) != 0 {
-		ss := status_new1[len(status_new1) - 1]
-		current_txnumber = ss.TxNumber
-		current_tt := DayOfTimeDown(start)
-		for current_tt < ss.TT {
-			status_new = append(status_new, &CrossChainTxStatus{
-				TT:       current_tt,
-				TxNumber: current_txnumber,
-			})
-			current_tt = DayOfTimeAddOne(current_tt)
-		}
-		for i := 0;i < len(status_new1);i ++ {
-			bb := status_new1[len(status_new1) - 1 - i]
-			status_new = append(status_new, bb)
-			current_tt = bb.TT
-			current_txnumber = bb.TxNumber
-		}
-		for current_tt < DayOfTimeUp(end) {
-			status_new = append(status_new, &CrossChainTxStatus{
-				TT:       current_tt,
-				TxNumber: current_txnumber,
-			})
-			current_tt = DayOfTimeAddOne(current_tt)
-		}
-	}
-	return status_new
+func TestTimeSecond(t *testing.T) {
+	tt := time.Now()
+	tt_str := tt.Format("2006-01-02 15:04:05")
+	fmt.Printf("now: %s \n", tt_str)
+	new_tt := time.Unix((tt.Unix() / 60) * 60, 0)
+	new_tt_str := new_tt.Format("2006-01-02 15:04:05")
+	fmt.Printf("now: %s \n", new_tt_str)
 }
 
-type CrossChainTxStatus struct {
-	TT        uint32    `json:"timestamp"`
-	TxNumber  uint32    `json:"txnumber"`
+func TestUintMax(t *testing.T) {
+	a := math.MaxUint32
+	fmt.Printf("max uint32: %d\n", a)
 }
 
-func TestOutputCrossChainTxStatus(t *testing.T) {
-	status := make([]*CrossChainTxStatus, 0)
-	status = append(status, &CrossChainTxStatus{
-		TT : 1593014400,
-		TxNumber: 7,
-	})
-	outputCrossChainTxStatus(status, 1592274867, 1593534067, 7)
+func TestBigInt(t *testing.T) {
+	aa := big.NewInt(100)
+	bb := big.NewInt(10)
+	//aa.Mod(aa, bb)
+	aa.Div(aa, bb)
+	fmt.Printf("aa: %d, bb: %d\n", aa.Int64(), bb.Int64())
 }

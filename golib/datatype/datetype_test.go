@@ -105,11 +105,8 @@ func TestOther2String(t *testing.T) {
 	}
 }
 
-type testSlice   []int
-
-func TestSliceLen(t *testing.T) {
-	xx := make(testSlice, 0)
-	xx = append(xx, 0)
-	xx = append(xx, 1)
-	fmt.Printf("len of slice: %d\n", len(xx))
+func TestInt64ToUint64(t *testing.T) {
+	a := int64(-1)
+	b := uint64(a)
+	fmt.Printf("a: %d, b: %d\n", a, b)
 }

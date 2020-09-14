@@ -3,6 +3,8 @@ package string
 import (
 	"encoding/hex"
 	"fmt"
+	"math"
+	"math/big"
 	"reflect"
 	"strconv"
 	"strings"
@@ -170,13 +172,19 @@ func TestString9(t *testing.T) {
 }
 
 func TestStringLower(t *testing.T) {
-	aa := "a719d5689ba73c478427a471c7d3b02aea9a8e45c0d44a6edd6f6e8898171ef0 "
-	bb := strings.ToUpper(aa)
+	aa := "239100e629a9Ca8e0BF45C7892b0fc72d78AA97A"
+	bb := strings.ToLower(aa)
+	fmt.Printf("before lower: %s, after lower: %s\n", aa, bb)
+}
+
+func TestStringUpper(t *testing.T) {
+	aa := "D8aE73e06552E270340b63A8bcAbf9277a1aac99"
+	bb := strings.ToLower(aa)
 	fmt.Printf("before lower: %s, after lower: %s\n", aa, bb)
 }
 
 func TestStringReverse(t *testing.T) {
-	aa := "1c35cf51d734ccf5a9269540b0d20aca3f3c8ec5b799d68ea06e98c31781cc14"
+	aa := "3f0def1945d7129c5f6625147dcbbaaee402e751"
 	bb, _ := hex.DecodeString(aa)
 	bb_len := len(bb)
 	cc := make([]byte, bb_len)
@@ -187,9 +195,33 @@ func TestStringReverse(t *testing.T) {
 	fmt.Printf("new string: %s\n", hex.EncodeToString(cc))
 }
 
+func HexReverse(arr []byte) []byte {
+	l := len(arr)
+	x := make([]byte, 0)
+	for i := l - 1; i >= 0; i-- {
+		x = append(x, arr[i])
+	}
+	return x
+}
+
+func HexStringReverse(value string) string {
+	aa, _ := hex.DecodeString(value)
+	bb := HexReverse(aa)
+	return hex.EncodeToString(bb)
+}
+
 func TestStringDecode(t *testing.T) {
-	xx := "00dfbd286c"
+	xx := "00407a10f35a"
 	//bb, _ := hex.DecodeString(xx)
-	cc, _ := strconv.ParseUint(xx, 16, 32)
-	fmt.Printf("xxxx: %d\n", cc)
+	cc, _ := strconv.ParseUint(xx, 16, 64)
+	dd, _ := strconv.ParseUint(HexStringReverse(xx), 16, 64)
+	fmt.Printf("xxxx: %d, %d\n", cc, dd)
+}
+
+func TestDataIncode(t *testing.T) {
+	xxx := big.NewInt(999)
+	xxx.Mul(xxx, big.NewInt(1000000000000000000))
+	fmt.Printf("xxx: %s\n", hex.EncodeToString(xxx.Bytes()))
+	fmt.Printf("amount: %d\n", xxx.Uint64())
+	fmt.Printf("max uint64: %d, int64: %d", uint64(math.MaxUint64), int64(math.MaxInt64))
 }
