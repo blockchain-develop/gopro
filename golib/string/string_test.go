@@ -172,7 +172,7 @@ func TestString9(t *testing.T) {
 }
 
 func TestStringLower(t *testing.T) {
-	aa := "239100e629a9Ca8e0BF45C7892b0fc72d78AA97A"
+	aa := "21718C0FbD10900565fa57C76e1862cd3F6a4d8E"
 	bb := strings.ToLower(aa)
 	fmt.Printf("before lower: %s, after lower: %s\n", aa, bb)
 }
@@ -184,7 +184,7 @@ func TestStringUpper(t *testing.T) {
 }
 
 func TestStringReverse(t *testing.T) {
-	aa := "3f0def1945d7129c5f6625147dcbbaaee402e751"
+	aa := "80ef586ef5fff2b1ea837839d662a527cd9fc500"
 	bb, _ := hex.DecodeString(aa)
 	bb_len := len(bb)
 	cc := make([]byte, bb_len)
@@ -211,7 +211,7 @@ func HexStringReverse(value string) string {
 }
 
 func TestStringDecode(t *testing.T) {
-	xx := "00407a10f35a"
+	xx := "005007"
 	//bb, _ := hex.DecodeString(xx)
 	cc, _ := strconv.ParseUint(xx, 16, 64)
 	dd, _ := strconv.ParseUint(HexStringReverse(xx), 16, 64)
@@ -224,4 +224,13 @@ func TestDataIncode(t *testing.T) {
 	fmt.Printf("xxx: %s\n", hex.EncodeToString(xxx.Bytes()))
 	fmt.Printf("amount: %d\n", xxx.Uint64())
 	fmt.Printf("max uint64: %d, int64: %d", uint64(math.MaxUint64), int64(math.MaxInt64))
+}
+
+func TestStringDecode2(t *testing.T) {
+	xx := "005007"
+	bb, err := hex.DecodeString(xx)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("decode: %s\n", bb)
 }

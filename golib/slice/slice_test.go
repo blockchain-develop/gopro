@@ -362,3 +362,21 @@ func TestSlice21(t *testing.T) {
 	}
 	*/
 }
+
+func TestSlice22(t *testing.T) {
+	var xxxx [32]byte
+	copy(xxxx[0:2], []byte("xx"))
+	fmt.Printf("xxxx: %v\n", xxxx)
+}
+
+func TestSlice23(t *testing.T) {
+	var aaa [32]byte
+	var bbb [32]byte
+	aaa[0] = 1
+	fmt.Printf("a == b ? %v", aaa == bbb)
+	/*
+	ccc := make([]byte, 0)
+	ddd := make([]byte, 0)
+	fmt.Printf("c == d ? %v", ccc == ddd)
+	 */
+}
