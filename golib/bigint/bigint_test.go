@@ -2,6 +2,7 @@ package bigint
 
 import (
 	"fmt"
+	"github.com/shopspring/decimal"
 	"math"
 	"math/big"
 	"testing"
@@ -56,8 +57,31 @@ func TestBig2String(t *testing.T) {
 func TestBigDiv(t *testing.T) {
 	a := big.NewInt(999)
 	b, _ := new(big.Float).SetString(a.String())
-	b.Quo(b, big.NewFloat(float64(100)))
-	fmt.Printf("b = %s\n", b.String())
+	b.Quo(b, big.NewFloat(float64(10)))
+	fmt.Printf("b = %s, %s\n", b.String(), b.Text('f', 2))
+	x1 := b.Text('f', 18)
+	index := len(x1) - 2
+	for ;index >=0;index -- {
+		if x1[index] == '0' {
+			continue
+		} else if x1[index] == '.' {
+			index --
+			break
+		} else {
+			break
+		}
+	}
+	x1 = x1[0: index + 1]
+	fmt.Printf("xxxxx: %s\n", x1)
+}
+
+func TestBigDiv1(t *testing.T) {
+	amount, _ := new(big.Int).SetString("111111111100", 10)
+	a := decimal.NewFromBigInt(amount, 0)
+	precision, _ := new(big.Int).SetString("10000000000000000000", 10)
+	b := decimal.NewFromBigInt(precision, 0)
+	result := a.Div(b)
+	fmt.Printf("xxxxx: %s\n", result.String())
 }
 
 func TestFloat2String(t *testing.T) {

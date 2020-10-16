@@ -2,7 +2,7 @@ package time
 
 import (
 	"fmt"
-	"github.com/ethereum/go-ethereum/common/math"
+	"math"
 	"math/big"
 	"testing"
 	"time"
@@ -20,7 +20,7 @@ func TestTime1(t *testing.T) {
 }
 
 func TestTime2(t *testing.T) {
-	time_t, err := time.Parse("2006-01-02 15:04:05", "2020-06-30 16:21:07")
+	time_t, err := time.Parse("2006-01-02 15:04:05", "2020-09-25 22:11:33")
 	if err != nil {
 		panic(err)
 	}
