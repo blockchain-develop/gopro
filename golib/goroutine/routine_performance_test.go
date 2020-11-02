@@ -2,6 +2,7 @@ package goroutine
 
 import (
 	"fmt"
+	"runtime/debug"
 	"sort"
 	"testing"
 	"time"
@@ -61,4 +62,30 @@ func TestPerformance_MultiThread(t *testing.T) {
  */
 func TestPerformance_ResouceRace(t *testing.T) {
 
+}
+
+// 测试 defer recover
+func TestDferRecover(t *testing.T) {
+	go Start()
+	time.Sleep(100 * time.Second)
+}
+
+func Start() {
+	for {
+		Start1()
+	}
+}
+
+func Start1() {
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Printf("service start, recover info: %s\n", string(debug.Stack()))
+		}
+	}()
+
+	xxx := []int{1, 2}
+	for i := 0;i < 3;i ++ {
+		fmt.Printf("xxx: %d\n", xxx[i])
+		time.Sleep(1 * time.Second)
+	}
 }

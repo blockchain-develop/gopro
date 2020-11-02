@@ -16,8 +16,21 @@ export PATH=$PATH:/usr/local/go/bin
 
 添加Go环境变量
 ```
-export GOPATH=/root/gopath
+export GOPATH=/data/gopath
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 ```
+
+## Goland的安装
+
++ 获取Goland 2019.03的安装包。[Goland 2019.03](https://www.jetbrains.com/go/download/other.html)
+
++ 安装或者解压。
+
++ 选择试用。
+
++ 菜单 -> Help -> Edit Custom VM Options, 在文件后面添加"-javaagent:/Users/yaoyao/.jetbrains/jetbrains-agent-v3.0.0.jar=offline"。
+"/Users/yaoyao/.jetbrains/jetbrains-agent-v3.0.0.jar"为本机保存的jetbrains-agent-v3.0.0.jar文件。
+
+
 
 ## 参考

@@ -89,3 +89,12 @@ func TestFloat2String(t *testing.T) {
 	b, _ := new(big.Int).SetString(a.String(), 10)
 	fmt.Printf("a = %s, b = %d\n", a.String(), b.Int64())
 }
+
+func TestXxxx(t *testing.T) {
+	amount, err := new(big.Int).SetString("<nil>", 10)
+	if err != true {
+		fmt.Printf("err:\n")
+	} else {
+		fmt.Printf("amount: %s\n", amount.String())
+	}
+}
