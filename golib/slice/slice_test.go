@@ -378,5 +378,5 @@ func TestSlice23(t *testing.T) {
 	ccc := make([]byte, 0)
 	ddd := make([]byte, 0)
 	fmt.Printf("c == d ? %v", ccc == ddd)
-	 */
+	*/
 }
