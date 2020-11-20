@@ -65,3 +65,8 @@ alter table table_sample change col_sample col_sample varchar(6);
 ## mysql导出查询结果到文件
 
 mysql -h 127.0.0.1 -u root -p -e `select * from table` > ./output.csv
+
+## mysql命令
+
+desc xxxxxxx;
+show create table xxxxxxx;

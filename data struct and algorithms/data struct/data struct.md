@@ -1,5 +1,37 @@
 # 数据结构
 
+## 常见的数据结构
+
++ 数组 go语言中的slice是一种可扩容和收缩的动态数组
+    1. go语言的[slice使用](./../../golib/slice)
++ 链表 go语言容器包中的list, go语言环境下使用list比较少，更多的是使用map和slice，因为指针对go语言的垃圾回收性能影响比较大
+    1. go语言容器包中的[list使用](./../../golib/list)
++ 栈
+    1. go语言包中的[stack实现](https://github.com/golang-collections/collections/blob/master/stack/stack.go)
+    2. 基于list的[stack实现](./../../golib/stack/stack_list.go)
+    3. 基于slice的[stack实现](./../../golib/stack/stack_slice.go)
++ 队列
+    1. go语言包中的[queue实现](https://github.com/golang-collections/go-datastructures/blob/master/queue/queue.go)
++ 最小堆/最大堆
+    1. 使用go语言[实现的最大最小堆](./unlinear/maxminheap)
+    2. go语言包中的[最大最小堆使用](./../../golib/sort/heapsort_test.go)
+    3. [使用go语言包的堆排序](./../../golib/sort/heapsort_test.go)
+    4. [堆排序](./../sort/memsort/comsort/selectsort/heapsort)
+    5. [使用最小堆的霍夫曼编码](./../algorithms/huffmancoding)
++ 优先队列
+    1. go语言包中的[priority_queue实现](https://github.com/golang-collections/go-datastructures/blob/master/queue/priority_queue.go)
+    2. go语言包中的[priority_queue使用](./../../golib/sort/heappriorityqueue_test.go)
++ avl树
+    1. go语言[实现avl](./unlinear/avl3.0)
++ rb树
+    1. [STL为什么使用rb树而不是avl树](https://www.zhihu.com/question/20545708)
++ skiplist
+    1. go语言[实现skiplist](./unlinear/skiplistv1)
+    2. [redis为什么使用skiplist而不是平衡树](https://zhuanlan.zhihu.com/p/23370124)
++ hash table
++ set 有使用avl和rb树实现的有序set，也有hsah table实现的无序set
++ map 有使用avl或者rb树试下的有序map，也有hash table实现的无序map
+
 ## C++的数据结构
 
 ### 序列容器

@@ -1,0 +1,21 @@
+
+CREATE SCHEMA IF NOT EXISTS `palette` DEFAULT CHARACTER SET utf8;
+USE `palette`;
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`(
+   `hash` VARCHAR(64) NOT NULL,
+   `name` VARCHAR(64) NOT NULL,
+   `age` INT(8) NOT NULL,
+   PRIMARY KEY (`hash`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `profile`;
+CREATE TABLE `profile`(
+   `aaaa` VARCHAR(64) NOT NULL,
+   `bbbb` VARCHAR(64) NOT NULL,
+   `user_hash` VARCHAR(64) NOT NULL,
+   FOREIGN KEY (`user_hash`)
+       REFERENCES user(hash),
+   PRIMARY KEY (`aaaa`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

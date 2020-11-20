@@ -39,3 +39,7 @@ find ./ -name "*.go" | xargs gofmt -w -l
 
 ## 在windows下跨平台编译linux
 GOOS=linux;GOARCH=amd64;CGO_ENABLED=0
+
+## beego根据mysql生成models
+
+bee api xxxx -conn="root:root@tcp(localhost:3306)/palette?charset=utf8"

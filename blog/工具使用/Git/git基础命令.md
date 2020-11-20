@@ -1,5 +1,11 @@
 # git基础命令
 
+## 安装
+
+```
+apt install git
+```
+
 ## tag
 
 创建tag:
