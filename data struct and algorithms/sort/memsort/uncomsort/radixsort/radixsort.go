@@ -31,7 +31,7 @@ func getbits(item int32) int {
 
 func radixsort(data[]int32, data1[]int32, bit int) {
 	counter := make([]int, 10)
-	base := 1;
+	base := 1
 	for i := 0;i < bit;i ++ {
 		base *= 10
 	}

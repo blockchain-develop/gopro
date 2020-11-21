@@ -21,14 +21,21 @@
 + 优先队列
     1. go语言包中的[priority_queue实现](https://github.com/golang-collections/go-datastructures/blob/master/queue/priority_queue.go)
     2. go语言包中的[priority_queue使用](./../../golib/sort/heappriorityqueue_test.go)
-+ avl树
-    1. go语言[实现avl](./unlinear/avl3.0)
-+ rb树
-    1. [STL为什么使用rb树而不是avl树](https://www.zhihu.com/question/20545708)
++ 平衡二叉搜索树
+    + avl树
+        1. go语言[实现avl](./unlinear/avl3.0)
+    + rb树
+        1. [STL为什么使用rb树而不是avl树](https://www.zhihu.com/question/20545708)
+        2. [MIT算法导论-红黑树](https://www.bilibili.com/video/BV1Tb411M7FA?p=10)
+    + 2-3树
+    + 2-3-4树
+    + b树
 + skiplist
     1. go语言[实现skiplist](./unlinear/skiplistv1)
     2. [redis为什么使用skiplist而不是平衡树](https://zhuanlan.zhihu.com/p/23370124)
+    3. [MIT算法导论-跳跃表](https://www.bilibili.com/video/BV1Tb411M7FA?p=12)
 + hash table
+    1. [MIT算法导论-哈希表](https://www.bilibili.com/video/BV1Tb411M7FA?p=7)
 + set 有使用avl和rb树实现的有序set，也有hsah table实现的无序set
 + map 有使用avl或者rb树试下的有序map，也有hash table实现的无序map
 
