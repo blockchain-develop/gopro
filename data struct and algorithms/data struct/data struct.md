@@ -37,7 +37,7 @@
 + hash table
     1. [MIT算法导论-哈希表](https://www.bilibili.com/video/BV1Tb411M7FA?p=7)
 + set 有使用avl和rb树实现的有序set，也有hsah table实现的无序set
-+ map 有使用avl或者rb树试下的有序map，也有hash table实现的无序map
++ map 有使用avl或者rb树实现的有序map，也有hash table实现的无序map
 
 ## C++的数据结构
 
