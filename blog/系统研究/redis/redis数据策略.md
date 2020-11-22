@@ -69,3 +69,23 @@ Redis实际使用的是惰性删除和定期删除两种策略：通过配合使
     + 如果输入键已经过期，那么expireIfNeeded函数将输入键从数据库中删除。
     + 如果输入键未过期，那么expireIfNeeded函数不做动作。
 + 过期键的定期删除策略由redis.c/activeExpireCy cle函数实现，每当Redis的服务器周期性操作redis.c/serverCron函数执行时，activeExpireCycle函数就会被调用，它在规定的时间内，分多次遍历服务器中的各个数据库，从数据库的expires字典中随机检查一部分键的过期时间，并删除其中的过期键。
+
+## 内存淘汰策略
+
+不管是定期采样删除还是惰性删除都不是一种完全精准的删除，就还是会存在key没有被删除掉的场景，所以就需要内存淘汰策略进行补充。
+
+redis内存淘汰策略：
+1. noeviction：当内存使用超过配置的时候会返回错误，不会驱逐任何键
+2. allkeys-lru：加入键的时候，如果过限，首先通过LRU算法驱逐最久没有使用的键
+3. volatile-lru：加入键的时候如果过限，首先从设置了过期时间的键集合中驱逐最久没有使用的键
+4. allkeys-random：加入键的时候如果过限，从所有key随机删除
+5. volatile-random：加入键的时候如果过限，从过期键的集合中随机驱逐
+6. volatile-ttl：从配置了过期时间的键中驱逐马上就要过期的键
+7. volatile-lfu：从所有配置了过期时间的键中驱逐使用频率最少的键
+8. allkeys-lfu：从所有键中驱逐使用频率最少的键
+
+## LRU
+
+[Redis的内存淘汰策略](https://zhuanlan.zhihu.com/p/105587132)
+
+
