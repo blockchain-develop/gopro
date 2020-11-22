@@ -32,3 +32,15 @@
 
 ### 使用场景
 AF_UNIX由于其对系统cpu的较少消耗，不受限于网卡带宽，及高效的传递速率，本机通信则首选AF_UNIX域。不用多说，AF_INET则用于跨机器之间的通信。
+
+## recv
+
+The receive request will complete only when one of the following events occurs:
++ The buffer supplied by the caller is completely full.
++ The connection has been closed.
++ The request has been canceled.
+
+## send
+
+
+
