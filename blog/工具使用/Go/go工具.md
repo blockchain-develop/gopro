@@ -43,3 +43,10 @@ GOOS=linux;GOARCH=amd64;CGO_ENABLED=0
 ## beego根据mysql生成models
 
 bee api xxxx -conn="root:root@tcp(localhost:3306)/palette?charset=utf8"
+
+## go插件开发
+[go插件开发](https://www.jianshu.com/p/917b159a4be6)
+
+
+
+

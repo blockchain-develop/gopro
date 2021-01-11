@@ -33,3 +33,35 @@ func TestInterface(t *testing.T) {
 	}
 	work1(instanceState.instance)
 }
+
+type Shape interface {
+	Lenght() uint64
+	Width() uint64
+}
+
+type Rect struct {
+
+}
+
+func (rect *Rect) Lenght() uint64 {
+	return 0
+}
+
+func (rect *Rect) Width() uint64 {
+	return 0
+}
+
+func TestInterfaceFuncCall(t *testing.T) {
+	{
+		var shape Shape
+		shape = &Rect{}
+		fmt.Printf("xxx: %d, %d\n", shape.Lenght(), shape.Width())
+	}
+	/*
+	{
+		var shape Shape
+		shape = Rect{}
+		fmt.Printf("xxx: %d, %d\n", shape.Lenght(), shape.Width())
+	}
+	*/
+}

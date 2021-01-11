@@ -234,3 +234,9 @@ func TestStringDecode2(t *testing.T) {
 	}
 	fmt.Printf("decode: %s\n", bb)
 }
+
+func TestStringJoin(t *testing.T) {
+	test := []string{"aaaa", "bbbb", "cccc"}
+	res := strings.Join(test, ",")
+	fmt.Printf("result: %s\n", res)
+}

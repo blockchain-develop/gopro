@@ -9,7 +9,7 @@ import (
 )
 
 func TestBigInt(t *testing.T) {
-	aaa := big.NewInt(math.MaxInt64)
+	aaa := new(big.Int).SetUint64(math.MaxUint64)
 	fmt.Printf("max int 64: %d, string: %s\n", aaa.Int64(), aaa.String())
 	bbb := aaa.Mul(big.NewInt(math.MaxInt64), aaa)
 	fmt.Printf("max big int: %d, string: %s\n", bbb.Int64(), bbb.String())
@@ -97,4 +97,17 @@ func TestXxxx(t *testing.T) {
 	} else {
 		fmt.Printf("amount: %s\n", amount.String())
 	}
+}
+
+type BigInt big.Int
+
+func (b *BigInt) value() string {
+	data := (*big.Int)(b)
+	return data.String()
+}
+
+func TestBigIntRedefine(t *testing.T) {
+	data := new(big.Int)
+	data.SetString("1000000000000000000000000000000000000000000000000000000000000000000000000000", 10)
+	fmt.Printf("value: %s\n", (*BigInt)(data).value())
 }

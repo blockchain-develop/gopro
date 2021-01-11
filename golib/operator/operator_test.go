@@ -28,3 +28,11 @@ func TestShift2(t *testing.T) {
 	a := n + m
 	fmt.Printf("%x %x %x\n", n, m, a)
 }
+
+func TestNumberFromFigure(t *testing.T) {
+	x := int64(1)
+	for i := 0;i < 8;i ++ {
+		x *= 10
+	}
+	fmt.Printf("x: %d\n", x)
+}
