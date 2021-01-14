@@ -172,7 +172,7 @@ func TestString9(t *testing.T) {
 }
 
 func TestStringLower(t *testing.T) {
-	aa := "1269d9940a2bfc5aC13c759E7ef1E35FEc7278f6"
+	aa := "441761326490cACF7aF299725B6292597EE822c2"
 	bb := strings.ToLower(aa)
 	fmt.Printf("before lower: %s, after lower: %s\n", aa, bb)
 }
