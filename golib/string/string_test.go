@@ -172,9 +172,17 @@ func TestString9(t *testing.T) {
 }
 
 func TestStringLower(t *testing.T) {
-	aa := "441761326490cACF7aF299725B6292597EE822c2"
+	aa := "b8033859be7553cf9c7657f664FC2243BA5f02Ef"
 	bb := strings.ToLower(aa)
 	fmt.Printf("before lower: %s, after lower: %s\n", aa, bb)
+}
+
+func TestStringLower2(t *testing.T) {
+	aa := []string{"b119b3b8e5e6eeffbe754b20ee5b8a42809931fb","b9478391eec218defa96f7b9a7938cf44e7a2fd5","48389753b64C9e581975457332E60dC49325A653","8F339ABc2A2a8a4D0364C7e35F892c40FBFb4BC0","0dBbf67Fb78651D3F6407A421040f1503b486693","89bcD91F7922126C568436841b16d036528E9714","6514a5ebff7944099591ae3e8a5c0979c83b2571","8c0859c191d8f100e4a3c0d8c0066c36a0c1f894","A7d1aAc3c9bf61559c25f94132a9f801E8B5F97E","643f3914fB8eDE03d932c79732746a8c11Ae470A","e85631B817923487ba40263144eEfF532Cff10a2","002E47D940dfd177dc0Fe78321E17EF84676985D"}
+	for _, item := range aa {
+		bb := strings.ToLower(item)
+		fmt.Printf("before lower: %s, after lower: %s\n", item, bb)
+	}
 }
 
 func TestStringUpper(t *testing.T) {
@@ -184,7 +192,7 @@ func TestStringUpper(t *testing.T) {
 }
 
 func TestStringReverse(t *testing.T) {
-	aa := "b6cb731f90cefebbd4f9cedd0cf56bd1e21967f4"
+	aa := "2a9263eedca22444b91f387b11e16f2a88ceca46d14f7f73f9c355910e905c64"
 	bb, _ := hex.DecodeString(aa)
 	bb_len := len(bb)
 	cc := make([]byte, bb_len)
@@ -239,4 +247,14 @@ func TestStringJoin(t *testing.T) {
 	test := []string{"aaaa", "bbbb", "cccc"}
 	res := strings.Join(test, ",")
 	fmt.Printf("result: %s\n", res)
+}
+
+func TestSubString(t *testing.T) {
+	data := "0123456789"
+	len := len(data)
+	if len > 5 {
+		len = 5
+	}
+	data1 := data[0:len]
+	fmt.Printf("data1: %s\n", data1)
 }

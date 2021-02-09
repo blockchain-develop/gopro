@@ -47,6 +47,10 @@ bee api xxxx -conn="root:root@tcp(localhost:3306)/palette?charset=utf8"
 ## go插件开发
 [go插件开发](https://www.jianshu.com/p/917b159a4be6)
 
+## 如何在go中添加类似c中的宏
+
+[golang交叉编译和条件编译的实际应用](https://zhuanlan.zhihu.com/p/92235251)
+
 
 
 

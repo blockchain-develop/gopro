@@ -84,7 +84,7 @@ func TestBigDiv1(t *testing.T) {
 	fmt.Printf("xxxxx: %s\n", result.String())
 }
 
-func TestFloat2String(t *testing.T) {
+func TestFloat2Int(t *testing.T) {
 	a := big.NewFloat(99)
 	b, _ := new(big.Int).SetString(a.String(), 10)
 	fmt.Printf("a = %s, b = %d\n", a.String(), b.Int64())
@@ -99,6 +99,14 @@ func TestXxxx(t *testing.T) {
 	}
 }
 
+func TestFloat2String(t *testing.T) {
+	xxx, _ := new(big.Float).SetString("0.00000011911111111111111111111")
+	yyy := new(big.Float).Mul(xxx, new(big.Float).SetUint64(100000000))
+	yyy.SetMode(big.ToPositiveInf)
+	zzz, aaa := yyy.Uint64()
+	fmt.Printf("data: %d, %d\n", zzz, aaa)
+}
+
 type BigInt big.Int
 
 func (b *BigInt) value() string {
@@ -110,4 +118,14 @@ func TestBigIntRedefine(t *testing.T) {
 	data := new(big.Int)
 	data.SetString("1000000000000000000000000000000000000000000000000000000000000000000000000000", 10)
 	fmt.Printf("value: %s\n", (*BigInt)(data).value())
+}
+
+func TestString2BigFloat(t *testing.T) {
+	data := new(big.Float)
+	aaa, result := data.SetString("")
+	if !result {
+		fmt.Printf("invalid")
+	} else {
+		fmt.Printf("aaa: %s", aaa.String())
+	}
 }

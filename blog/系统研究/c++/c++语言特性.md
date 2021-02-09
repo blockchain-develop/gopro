@@ -273,3 +273,26 @@ int main()
 
 [指针与引用的区别以及引用的三种用法](https://blog.csdn.net/u011857683/article/details/78348212)
 
+## static的多线程
+
+```
+#include <iostream>       // std::cout
+#include <atomic>         // std::atomic
+#include <thread>         // std::thread
+#include <vector>         // std::vector
+
+void append (int val) {
+  static int counter = val;
+  counter += 10;
+  std::cout << "thread:" << val << " counter:" << counter << std::endl;
+}
+
+int main ()
+{
+  std::vector<std::thread> threads;
+  for (int i=0; i<10; ++i) threads.push_back(std::thread(append,i));
+  for (auto& th : threads) th.join();
+  return 0;
+}
+```
+
