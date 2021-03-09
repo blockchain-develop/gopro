@@ -2,7 +2,7 @@ package bubblingsort
 
 import (
 	"github.com/gopro/memsort"
-	"github.com/magiconair/properties/assert"
+	"github.com/stretchr/testify/assert"
 	"math/rand"
 	"testing"
 )

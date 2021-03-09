@@ -129,3 +129,23 @@ func TestString2BigFloat(t *testing.T) {
 		fmt.Printf("aaa: %s", aaa.String())
 	}
 }
+
+func TestFloat2String2(t *testing.T) {
+	decimal.DivisionPrecision = 2
+	aaa := new(big.Float).Mul(new(big.Float).SetFloat64(0.3333), new(big.Float).SetInt64(10000))
+	bbb, _ := aaa.Int64()
+	percent := ""
+	if bbb != 0 {
+		ccc := decimal.NewFromInt(bbb)
+		ddd := ccc.Div(decimal.NewFromInt(100))
+		percent = fmt.Sprintf("%s%s", ddd.String(), "%")
+	}
+	fmt.Printf("%s\n", percent)
+}
+
+func TestFloat2String3(t *testing.T) {
+	decimal.DivisionPrecision = 2
+	ddd := decimal.NewFromFloat(0.3333 * 100)
+	percent := fmt.Sprintf("%s%s", ddd.String(), "%")
+	fmt.Printf("%s\n", percent)
+}

@@ -192,7 +192,7 @@ func TestStringUpper(t *testing.T) {
 }
 
 func TestStringReverse(t *testing.T) {
-	aa := "2a9263eedca22444b91f387b11e16f2a88ceca46d14f7f73f9c355910e905c64"
+	aa := "c50e9b943346e3e7f0339a01f230c10feff9fef3d24dead95918af0118266cde"
 	bb, _ := hex.DecodeString(aa)
 	bb_len := len(bb)
 	cc := make([]byte, bb_len)

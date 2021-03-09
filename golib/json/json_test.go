@@ -54,6 +54,16 @@ func TestJson(t *testing.T) {
 	}
 }
 
+func TestJson_Unmarshal_empty(t *testing.T) {
+	var test1 Contract
+	//err := json.Unmarshal([]byte(""), &test1)
+	err := json.Unmarshal([]byte{}, &test1)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Unmarshal value : %v\n", test1)
+}
+
 /*
 将json Unmarshal为结构体对象
 json: {"address":"aaa","chain":0}

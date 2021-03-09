@@ -2,7 +2,7 @@ package lrucache
 
 import (
 	"testing"
-	"github.com/magiconair/properties/assert"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestLRUCache1(t *testing.T) {

@@ -2,7 +2,7 @@ package binarysearchtree
 
 import (
 	"github.com/gopro/memsort"
-	"github.com/magiconair/properties/assert"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 

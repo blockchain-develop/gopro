@@ -8,3 +8,11 @@
 + [golang程序启动过程](http://cbsheng.github.io/posts/%E6%8E%A2%E7%B4%A2golang%E7%A8%8B%E5%BA%8F%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/)
 + [Awesome Go](https://awesome-go.com/#gophers)
 + [Go程序初始化过程](https://studygolang.com/articles/12010)
+
++ [go的编程网站](https://www.golangprograms.com/data-structure-and-algorithms/)
+
+go实现分析的一个案例 https://www.cnblogs.com/qcrao-2018/p/11442998.html#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99
+
+go的学习书籍 https://blog.csdn.net/hittata/article/details/82982454
+
+go语言实现原理 https://github.com/changkun/go-under-the-hood/blob/master/book/zh-cn/TOC.md

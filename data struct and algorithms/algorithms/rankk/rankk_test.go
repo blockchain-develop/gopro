@@ -1,7 +1,7 @@
 package rankk
 
 import (
-	"github.com/magiconair/properties/assert"
+	"github.com/stretchr/testify/assert"
 	"math/rand"
 	"sort"
 	"testing"

@@ -33,10 +33,10 @@ oa01EtSaGp14qkSZVeGQNrUV1B8Q+iuWVCpCHU1QgYkUKxbjm70MHjzleLy8Y3T+
 -----END ENCRYPTED PRIVATE KEY-----
 ```
 
-密钥经过PEM编码后在文件头尾都添加了标签，用以说明当前的文件格式。从标签内容也可以看出密钥是加密的，因为有“ ENCRYPTED”。
+密钥经过PEM编码后在文件头尾都添加了标签，用以说明当前的文件格式。从标签内容也可以看出密钥是加密的，因为有“ENCRYPTED”。
 
 中间的密钥内容是经过BASE64编码的，这样方便私钥的传递，例如在网络上传输，数据复制粘贴。
- 
+
 例子只是PEM文件格式的其中一种，以下是平时可能会碰到的PEM私钥格式：
 
 #### PKCS#8 私钥加密格式

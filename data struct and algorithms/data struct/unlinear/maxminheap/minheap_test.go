@@ -2,7 +2,7 @@ package maxminheap
 
 import (
 	"fmt"
-	"github.com/magiconair/properties/assert"
+	"github.com/stretchr/testify/assert"
 	"math/rand"
 	"testing"
 )
