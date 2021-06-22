@@ -11,6 +11,8 @@
 
 + [go的编程网站](https://www.golangprograms.com/data-structure-and-algorithms/)
 
++ [Go map实现原理](https://blog.csdn.net/qq_38572383/article/details/95359805)
+
 go实现分析的一个案例 https://www.cnblogs.com/qcrao-2018/p/11442998.html#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99
 
 go的学习书籍 https://blog.csdn.net/hittata/article/details/82982454

@@ -329,4 +329,8 @@ func TestJson_Marshal5(t *testing.T) {
 }
 
 
+func LongestSubString(data string) string {
+
+}
+
 

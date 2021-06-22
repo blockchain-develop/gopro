@@ -172,7 +172,7 @@ func TestString9(t *testing.T) {
 }
 
 func TestStringLower(t *testing.T) {
-	aa := "b8033859be7553cf9c7657f664FC2243BA5f02Ef"
+	aa := "155040625D7ae3e9caDA9a73E3E44f76D3Ed1409"
 	bb := strings.ToLower(aa)
 	fmt.Printf("before lower: %s, after lower: %s\n", aa, bb)
 }
@@ -186,13 +186,13 @@ func TestStringLower2(t *testing.T) {
 }
 
 func TestStringUpper(t *testing.T) {
-	aa := "D8aE73e06552E270340b63A8bcAbf9277a1aac99"
+	aa := "8Aa2BAd3b3bC62865Ac2314FA7C8934e5C21f213"
 	bb := strings.ToLower(aa)
 	fmt.Printf("before lower: %s, after lower: %s\n", aa, bb)
 }
 
 func TestStringReverse(t *testing.T) {
-	aa := "c50e9b943346e3e7f0339a01f230c10feff9fef3d24dead95918af0118266cde"
+	aa := "a528e3942294f7f4f70c9940af9d788163915c34ec77b2b671a193816feb4eb3"
 	bb, _ := hex.DecodeString(aa)
 	bb_len := len(bb)
 	cc := make([]byte, bb_len)

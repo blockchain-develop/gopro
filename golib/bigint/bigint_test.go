@@ -145,7 +145,15 @@ func TestFloat2String2(t *testing.T) {
 
 func TestFloat2String3(t *testing.T) {
 	decimal.DivisionPrecision = 2
-	ddd := decimal.NewFromFloat(0.3333 * 100)
+	ddd := decimal.NewFromFloat(float64(0.0034) * 10000)
+	ddd = ddd.Div(decimal.NewFromInt(100))
 	percent := fmt.Sprintf("%s%s", ddd.String(), "%")
 	fmt.Printf("%s\n", percent)
+}
+
+func TestInt(t *testing.T) {
+	data := new(big.Int)
+	data.SetString("1.0e10", 10)
+	fmt.Printf("value: %s\n", (*BigInt)(data).value())
+	new(big.Int).set
 }

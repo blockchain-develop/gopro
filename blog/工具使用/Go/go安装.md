@@ -32,5 +32,8 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 "/Users/yaoyao/.jetbrains/jetbrains-agent-v3.0.0.jar"为本机保存的jetbrains-agent-v3.0.0.jar文件。
 
 
+## goland编译linux版本
+
+GOARCH=amd64;GOOS=linux
 
 ## 参考

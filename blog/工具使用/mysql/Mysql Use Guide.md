@@ -18,7 +18,7 @@ mysql_secure_installation
 ```
 use mysql;
 update user set plugin = "mysql_native_password";
-update user set authentication_string = password('root') where user = "root" and Host = "localhost";
+update user set authentication_string = password('Onchain@2019') where user = "root" and Host = "localhost";
 flush privileges;
 ```
 重启mysql
