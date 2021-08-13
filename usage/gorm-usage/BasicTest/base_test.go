@@ -1,4 +1,4 @@
-package gorm_usage
+package BasicTest
 
 import (
 	"fmt"

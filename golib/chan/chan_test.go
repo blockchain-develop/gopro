@@ -76,3 +76,22 @@ func TestChan4(t *testing.T) {
 	fmt.Printf("bbbb\n")
 	time.Sleep(time.Second * 5)
 }
+
+func TestChan5(t *testing.T) {
+	exit := make(chan bool)
+	go func() {
+		for {
+			select {
+			case <- exit:
+				fmt.Printf("aaa\n")
+			}
+		}
+	}()
+
+	exit <- true
+	exit <- true
+	exit <- true
+
+	fmt.Printf("bbb\n")
+	time.Sleep(time.Second * 5)
+}

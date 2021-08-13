@@ -1,4 +1,4 @@
-package gorm_usage
+package BasicTest
 
 import "time"
 
@@ -14,7 +14,7 @@ type User struct {
 	Age     int64  `gorm:"size:8;not null"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
-	CompanyID string  `gorm:"size:64;not null"`
+	CompanyID string `gorm:"size:64;not null"`
 	Company *Company `gorm:"foreignKey:CompanyID;references:Code"`
 	//ProfileID string  `gorm:"size:64;not null"`
 	//Profile *Profile `gorm:"foreignKey:ProfileID;references:Code"`

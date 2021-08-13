@@ -23,11 +23,14 @@ git push origin :refs/tags/v1.0.0
 
 ## 添加远程仓库&merge
 
-git remote add origin(本地名字，默认为origin) master(branch的名字，默认为master) url
+git remote add origin(本地名字，默认为origin) [master(branch的名字，默认为master)] url
+
+修改远程仓库地址
+
+git remote set-url origin url
 
 拉取remote最新代码
-
-git pull origin master
+git fetch master  /  git pull origin master
 
 push到remote
 
@@ -86,3 +89,13 @@ Merge made by the 'recursive' strategy.
 ```
 
 [git指导](https://www.cnblogs.com/yuqing-wei/p/5487713.html)
+
+## 提交PR后出现冲突的解决办法
+
+假设本地repository的branch A向另一个repository的branch master提交pr，出现冲突无法自动merge的解决办法。
+
++ 本地checkout并切换到branch A，pull拉取更新到最新代码
++ 在本地branch A上，merge远程repository的branch master
++ 会提示无法合并，手动解决完冲突并提交到branch A 
++ 回到PR，会发现PR已经无冲突
++ 让有merge权限的人进行merge即可
