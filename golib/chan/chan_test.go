@@ -95,3 +95,28 @@ func TestChan5(t *testing.T) {
 	fmt.Printf("bbb\n")
 	time.Sleep(time.Second * 5)
 }
+
+/*
+尝试向一个channel写入，如果不能写则立马返回，不要阻塞
+ */
+func TestChan6(t *testing.T) {
+	data := make(chan interface{}, 5)
+	for {
+		select {
+			case data <- true:
+				fmt.Println("write")
+		}
+	}
+}
+
+func TestChan7(t *testing.T) {
+	data := make(chan interface{}, 5)
+	for {
+		select {
+		case data <- true:
+			fmt.Println("write")
+		default:
+			fmt.Printf("continue")
+		}
+	}
+}

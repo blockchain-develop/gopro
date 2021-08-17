@@ -36,4 +36,12 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 GOARCH=amd64;GOOS=linux
 
+## Goland 2021.1最新安装
+
++ 从官网获取Goland最新版2021系列
++ 安装或者解压
++ 选择使用
++ 从网盘下载ide-eval-resetter-2.2.3.zip，拖放入Goland来安装插件
++ help -> eval reset,  插件有几个功能，选择reset则可以重置试用期
+
 ## 参考
