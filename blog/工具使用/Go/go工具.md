@@ -35,15 +35,9 @@ fperf是一个压测框架，[git](https://github.com/fperf/fperf)
 
 ```
 find ./ -name "*.go" | xargs gofmt -w -l
-find . | xargs grep -i "\"UsdtAmount\":\"0\""
-find . | xargs grep -i "\"DstChainId\":2,\"UsdtAmount\":\"0"
-find . | xargs grep -i "\"SrcChainId\":6,\"Hash\":\"bcf39f0edda668c58371e519af37ca705f2bfcbd\",\"DstChainId\":2"
-
-
-find . | xargs grep -i "\"Hash\":\"bcf39f0edda668c58371e519af37ca705f2bfcbd\",\"DstChainId\":2"
-
-find . | xargs grep -i "\"Hash\":\"aee4164c1ee46ed0bbc34790f1a3d1fc87796668\",\"DstChainId\":7"
 ```
+
+##
 
 ## 在windows下跨平台编译linux
 GOOS=linux;GOARCH=amd64;CGO_ENABLED=0

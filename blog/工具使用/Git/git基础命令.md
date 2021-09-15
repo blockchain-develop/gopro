@@ -47,6 +47,14 @@ git checkout -b poly poly/master
 提交到远端
 git push poly poly
 
+## 删除本地branch
+
+git branch -D dev
+
+## 删除远程branch
+
+git push origin --delete dev
+
 ## add后撤销
 
 git reset HEAD
@@ -99,3 +107,14 @@ Merge made by the 'recursive' strategy.
 + 会提示无法合并，手动解决完冲突并提交到branch A 
 + 回到PR，会发现PR已经无冲突
 + 让有merge权限的人进行merge即可
+
+## 删除一个commit和push
+
++ 回到以前的一个点   git reset HEAD~1 --hard 
++ 再次修改并且commit
++ force的push，将以前的删除    git push -f wallet deriveAddress 
+
+## 如何保存修改回退到以前版本之后再加进来
+
++ git stash
++ git stash pop

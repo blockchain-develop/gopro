@@ -120,3 +120,108 @@ func TestChan7(t *testing.T) {
 		}
 	}
 }
+
+/*
+尝试想一个channel写入，如果不能写入则阻塞， 如果此时该routine还需要读入呢
+A -> B 同时
+B -> A
+ */
+
+func TestChan8(t *testing.T) {
+	done := make(chan bool)
+	r := make(chan int)
+	x1 := make(chan int)
+	x2 := make(chan int)
+	go func() {
+		for {
+			select {
+			case data := <- x2:
+				fmt.Println("data", data)
+				done <- true
+				fmt.Println("finish", data)
+			case data := <- r:
+				fmt.Println("data", data)
+				fmt.Println("finish", data)
+			}
+		}
+	}()
+
+	go func() {
+		for {
+			select {
+			case data := <- x1:
+				fmt.Println("data", data)
+				time.Sleep(time.Second * 5)
+				r <- 3
+				fmt.Println("finish", data)
+			case exit := <- done:
+				fmt.Println("exit", exit)
+			}
+		}
+	}()
+
+	x1 <- 1
+	x2 <- 2
+
+	time.Sleep(time.Second * 10)
+}
+
+
+func TestChan9(t *testing.T) {
+	done := make(chan bool)
+	r := make(chan int)
+	x1 := make(chan int)
+	x2 := make(chan int)
+	go func() {
+		for {
+			select {
+			case data := <- x2:
+				fmt.Println("data", data)
+				done <- true
+				fmt.Println("finish", data)
+			case data := <- r:
+				fmt.Println("data", data)
+				fmt.Println("finish", data)
+			}
+		}
+	}()
+
+	writed := false
+	write := func() bool {
+		if writed == true {
+			return true
+		}
+		for {
+			select {
+			case r <- 3:
+				writed = true
+				return true
+			default:
+				writed = false
+				return false
+			}
+		}
+	}
+
+	go func() {
+		ticker := time.NewTicker(time.Second)
+		for {
+			select {
+			case <- ticker.C:
+				write()
+			case data := <- x1:
+				fmt.Println("data", data)
+				time.Sleep(time.Second * 5)
+				write()
+				fmt.Println("finish", data)
+			case exit := <- done:
+				fmt.Println("exit", exit)
+			}
+		}
+	}()
+
+	x1 <- 1
+	x2 <- 2
+
+	time.Sleep(time.Second * 10)
+}

@@ -133,3 +133,11 @@ func TestBigInt(t *testing.T) {
 	aa.Div(aa, bb)
 	fmt.Printf("aa: %d, bb: %d\n", aa.Int64(), bb.Int64())
 }
+
+func TestMillisecond(t *testing.T) {
+	t1 := uint64(time.Second.Milliseconds()) * 5
+	t2 := t1 * uint64(time.Millisecond)
+	fmt.Println("start")
+	time.Sleep(time.Duration(t2))
+	fmt.Println("exit")
+}

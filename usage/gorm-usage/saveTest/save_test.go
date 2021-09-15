@@ -46,3 +46,12 @@ func TestSave(t *testing.T) {
 			collect.ID, collect.Chain, collect.Coin, collect.Status,  collect.From, collect.To, collect.Value.String(), collect.CreatedAt.String())
 	}
 }
+
+func TestFind(t *testing.T) {
+	db := newDB()
+	tc := make([]*TokenCollect, 0)
+	err := db.Find(&tc).Error
+	if err != nil {
+		panic(err)
+	}
+}
