@@ -151,9 +151,72 @@ func TestFloat2String3(t *testing.T) {
 	fmt.Printf("%s\n", percent)
 }
 
-func TestInt(t *testing.T) {
-	data := new(big.Int)
-	data.SetString("1.0e10", 10)
-	fmt.Printf("value: %s\n", (*BigInt)(data).value())
-	new(big.Int).set
+func TestDecimal(t *testing.T) {
+	type Test1 struct {
+		total decimal.Decimal
+	}
+	t1 := &Test1{}
+	t1.total = t1.total.Add(decimal.NewFromInt(1))
+	fmt.Printf("total: %s", t1.total.String())
+}
+
+func TestDecimalAdd(t *testing.T) {
+	a := "0.019931995999178948"
+	b := "0.019978999999706"
+	f := "add"
+	da, err := decimal.NewFromString(a)
+	if err != nil {
+		panic(err)
+	}
+	db, err := decimal.NewFromString(b)
+	if err != nil {
+		panic(err)
+	}
+	dc := decimal.Decimal{}
+	switch f {
+	case "add":
+		dc = da.Add(db)
+	case "sub":
+		dc = da.Sub(db)
+	}
+	fmt.Printf("%s %s %s is %s\n", da.String(), f, db.String(), dc.String())
+}
+
+func TestDecimal2(t *testing.T) {
+	a := "0.02"
+	b := "0.01"
+	c := "0.01"
+	d := "0.000021000000294"
+	da, err := decimal.NewFromString(a)
+	if err != nil {
+		panic(err)
+	}
+	db, err := decimal.NewFromString(b)
+	if err != nil {
+		panic(err)
+	}
+	dc, err := decimal.NewFromString(c)
+	if err != nil {
+		panic(err)
+	}
+	dd, err := decimal.NewFromString(d)
+	if err != nil {
+		panic(err)
+	}
+	dr := da.Add(db).Sub(dc).Sub(dd)
+	fmt.Printf("%s\n",dr.String())
+}
+
+func TestTemp(t *testing.T) {
+	value := new(big.Int).Mul(
+		new(big.Int).SetInt64(23456723),
+		new(big.Int).Exp(new(big.Int).SetInt64(10), new(big.Int).SetInt64(int64(1)), new(big.Int).SetInt64(10)),
+	)
+	fmt.Printf("%s", value.String())
+}
+
+
+func TestTemp1(t *testing.T) {
+	value := new(big.Int).Div(big.NewInt(1), big.NewInt(2))
+	fmt.Printf("value: %s\n",value.String())
 }

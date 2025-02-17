@@ -158,3 +158,21 @@ root@egaotan-VirtualBox:~# docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 ```
 
+进入容器
+```
+docker exec -it 69d1 /bin/bash
+```
+
+-- ubuntu 18.04
+!! -p: 端口映射，格式为 host_port:container_port。
+docker run -p 20336:20336 -itd --name ubuntu01 ubuntu:bionic
+docker run -p 20336:20336 -p 8545:8545 -itd --name poly ubuntu:bionic
+docker run -p 10332:10332 -p 10331:10331 -itd --name neo_mainnet ubuntu:bionic
+
+docker exec -it xxxx /bin/bash
+
+-- ubuntu 22.04
+docker run -p 5432:5433 -p 8545:8545 -itd  -v /test:/soft --name polygon-demo ubuntu:jammy
+docker run -itd  -v /Users/tangaoyuan/Documents/gopath/src/github.com:/github.com --name solana2 ubuntu:jammy
+
+

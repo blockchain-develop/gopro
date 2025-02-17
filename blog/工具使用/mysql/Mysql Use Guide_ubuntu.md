@@ -18,7 +18,9 @@ mysql_secure_installation
 ```
 use mysql;
 update user set plugin = "mysql_native_password";
-update user set authentication_string = password('Onchain@2019') where user = "root" and Host = "localhost";
+update user set authentication_string = password('Tgy_#0010') where user = "root" and Host = "localhost";   -- mysql 5.6
+--  SET PASSWORD FOR 'root'@'localhost' = 'Tgy_#0010';    --mysql 5.7 later
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'mynewpassword';
 flush privileges;
 ```
 重启mysql
@@ -49,9 +51,9 @@ ERROR 1130 (HY000): Host '172.168.3.79' is not allowed to connect to this MySQL 
 service mysql restart
 ```
 
-3.
+3. ERROR 1449 (HY000): The user specified as a definer ('mysql.infoschema'@'localhost') does not exist
 
-
+https://stackoverflow.com/questions/62127983/error-1449-hy000-the-user-specified-as-a-definer-mysql-infoschemalocalho
 
 ## mysql数据导入和导出
 

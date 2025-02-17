@@ -16,7 +16,7 @@ export PATH=$PATH:/usr/local/go/bin
 
 添加Go环境变量
 ```
-export GOPATH=/data/gopath
+export GOPATH=/home/ubuntu/gopath
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 ```
 

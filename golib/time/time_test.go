@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"math/big"
+	"strings"
 	"testing"
 	"time"
 )
@@ -16,6 +17,16 @@ func TestTime1(t *testing.T) {
 	{
 		tt := time.Now().Unix()
 		fmt.Printf("current unix time is %d or %b or %x\n", tt, tt, tt)
+	}
+	tt := int64(0)
+	{
+		tt = time.Now().UnixNano()
+		fmt.Printf("current unix time is %d or %b or %x\n", tt, tt, tt)
+	}
+	{
+		xx := time.Unix(tt/1000000000, tt%1000000000)
+		formatStr := "2006-01-02 15:04:05"
+		fmt.Printf(xx.Format(formatStr))
 	}
 }
 
@@ -140,4 +151,42 @@ func TestMillisecond(t *testing.T) {
 	fmt.Println("start")
 	time.Sleep(time.Duration(t2))
 	fmt.Println("exit")
+}
+
+func TestNanosecond(t *testing.T) {
+	t1 := time.Now().UnixNano()
+	t2 := time.Now().UnixNano()
+	t3 := time.Now().UnixNano()
+	fmt.Printf(" t1: %d\n t2: %d\n t3: %d\n", t1, t2, t3)
+	t4 := t3 >> 32
+	t5 := time.Now().Unix()
+	fmt.Printf(" t4: %d\n, t5: %d\n", t4, t5)
+}
+
+func TestXXXX(t *testing.T) {
+	index := uint(2)
+	id  := int64(0)
+	{
+		tt := time.Now().Unix()
+		id = int64(index) << 32 | tt
+		fmt.Printf("id: %d\n", id)
+	}
+	{
+		index = uint(id >> 32)
+		fmt.Printf("index: %d\n", index)
+	}
+}
+
+func Test11(t *testing.T) {
+	version := "/Dash Core:18.0.1/"
+	version = strings.TrimPrefix(
+		strings.TrimSuffix(version, "/"),
+		"/Dash Core:",
+	)
+	switch {
+	case version < "0.19.0":
+		fmt.Printf("xx")
+	default:
+		fmt.Printf("bb")
+	}
 }

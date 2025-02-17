@@ -7,8 +7,8 @@ import (
 )
 
 func TestShift(t *testing.T) {
-	n := 4
-	m := n << 1
+	n := 7235196223529507
+	m := n >> 32
 	fmt.Printf("number %d left shift 1 is %d\n", n, m)
 }
 
@@ -31,7 +31,7 @@ func TestShift2(t *testing.T) {
 
 func TestNumberFromFigure(t *testing.T) {
 	x := int64(1)
-	for i := 0;i < 8;i ++ {
+	for i := 0; i < 8; i++ {
 		x *= 10
 	}
 	fmt.Printf("x: %d\n", x)

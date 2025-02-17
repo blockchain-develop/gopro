@@ -7,10 +7,10 @@ import (
 )
 
 func work(exit *chan int) {
-	for i:= 0;i < 10;i ++ {
+	for i := 0; i < 10; i++ {
 		time.Sleep(time.Second * 1)
 	}
-	<- *exit
+	<-*exit
 }
 
 func TestChan(t *testing.T) {
@@ -38,7 +38,7 @@ func TestChan3(t *testing.T) {
 		for {
 			//time.Sleep(5 * time.Second)
 			select {
-			case <- exit:
+			case <-exit:
 				fmt.Printf("aaaa\n")
 				//time.Sleep(5 * time.Second)
 				//return
@@ -58,7 +58,7 @@ func TestChan4(t *testing.T) {
 		for {
 			//time.Sleep(5 * time.Second)
 			select {
-			case v, _ := <- exit:
+			case v, _ := <-exit:
 				fmt.Printf("aaaa: %v\n", v)
 				//time.Sleep(5 * time.Second)
 				//return
@@ -71,7 +71,6 @@ func TestChan4(t *testing.T) {
 	//
 	close(exit)
 
-
 	//do something after routine
 	fmt.Printf("bbbb\n")
 	time.Sleep(time.Second * 5)
@@ -82,7 +81,7 @@ func TestChan5(t *testing.T) {
 	go func() {
 		for {
 			select {
-			case <- exit:
+			case <-exit:
 				fmt.Printf("aaa\n")
 			}
 		}
@@ -98,13 +97,13 @@ func TestChan5(t *testing.T) {
 
 /*
 尝试向一个channel写入，如果不能写则立马返回，不要阻塞
- */
+*/
 func TestChan6(t *testing.T) {
 	data := make(chan interface{}, 5)
 	for {
 		select {
-			case data <- true:
-				fmt.Println("write")
+		case data <- true:
+			fmt.Println("write")
 		}
 	}
 }
@@ -125,7 +124,7 @@ func TestChan7(t *testing.T) {
 尝试想一个channel写入，如果不能写入则阻塞， 如果此时该routine还需要读入呢
 A -> B 同时
 B -> A
- */
+*/
 
 func TestChan8(t *testing.T) {
 	done := make(chan bool)
@@ -135,11 +134,11 @@ func TestChan8(t *testing.T) {
 	go func() {
 		for {
 			select {
-			case data := <- x2:
+			case data := <-x2:
 				fmt.Println("data", data)
 				done <- true
 				fmt.Println("finish", data)
-			case data := <- r:
+			case data := <-r:
 				fmt.Println("data", data)
 				fmt.Println("finish", data)
 			}
@@ -149,12 +148,12 @@ func TestChan8(t *testing.T) {
 	go func() {
 		for {
 			select {
-			case data := <- x1:
+			case data := <-x1:
 				fmt.Println("data", data)
 				time.Sleep(time.Second * 5)
 				r <- 3
 				fmt.Println("finish", data)
-			case exit := <- done:
+			case exit := <-done:
 				fmt.Println("exit", exit)
 			}
 		}
@@ -166,7 +165,6 @@ func TestChan8(t *testing.T) {
 	time.Sleep(time.Second * 10)
 }
 
-
 func TestChan9(t *testing.T) {
 	done := make(chan bool)
 	r := make(chan int)
@@ -175,11 +173,11 @@ func TestChan9(t *testing.T) {
 	go func() {
 		for {
 			select {
-			case data := <- x2:
+			case data := <-x2:
 				fmt.Println("data", data)
 				done <- true
 				fmt.Println("finish", data)
-			case data := <- r:
+			case data := <-r:
 				fmt.Println("data", data)
 				fmt.Println("finish", data)
 			}
@@ -207,14 +205,14 @@ func TestChan9(t *testing.T) {
 		ticker := time.NewTicker(time.Second)
 		for {
 			select {
-			case <- ticker.C:
+			case <-ticker.C:
 				write()
-			case data := <- x1:
+			case data := <-x1:
 				fmt.Println("data", data)
 				time.Sleep(time.Second * 5)
 				write()
 				fmt.Println("finish", data)
-			case exit := <- done:
+			case exit := <-done:
 				fmt.Println("exit", exit)
 			}
 		}
@@ -224,4 +222,49 @@ func TestChan9(t *testing.T) {
 	x2 <- 2
 
 	time.Sleep(time.Second * 10)
+}
+
+func read(x chan int) {
+	defer func() {
+		fmt.Printf("read exit")
+	}()
+	for {
+		select {
+		case data := <-x:
+			fmt.Printf("read data: %v\n", data)
+		}
+	}
+}
+
+func write(x chan int) {
+	defer func() {
+		fmt.Printf("write exit")
+	}()
+	for i := 0; i < 10; i++ {
+		x <- i
+	}
+}
+
+func readAfterClose() {
+	x := make(chan int, 10)
+	write(x)
+	close(x)
+	read(x)
+	fmt.Printf("read after close")
+}
+
+func writeAfterClose() {
+	x := make(chan int, 10)
+	go read(x)
+	close(x)
+	write(x)
+	fmt.Printf("write after close")
+}
+
+func TestChan100(t *testing.T) {
+	readAfterClose()
+}
+
+func TestChan101(t *testing.T) {
+	writeAfterClose()
 }

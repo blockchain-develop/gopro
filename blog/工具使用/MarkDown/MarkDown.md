@@ -499,5 +499,23 @@ https://www.cnblogs.com/yueshangzuo/p/7992145.html
 
 [markdown学习思维导图](https://mm.edrawsoft.cn/template/26379)
 
+*ethereum fee fluctuation event*
+
+>*avg gas price value(1 day, 5 minutes)* : 0.001,0.001
+>
+> *block height* : 1000
+> 
+>*coin* : ETH
+> >*avg fee value(1 day, 5 minutes)* : 0.001,0.001
+> 
+>>*previous notify*: 0.001
+> 
+>*coin* : USDT
+> 
+>>*avg fee value(1 day, 5 minutes)* : 0.1,0.1
+> 
+>>*previous notify*: 0.1
+> 
+
 
 

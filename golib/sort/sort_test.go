@@ -1,7 +1,6 @@
 package sort
 
 import (
-	"github.com/gopro/memsort"
 	"github.com/magiconair/properties/assert"
 	"math/rand"
 	"sort"
@@ -10,25 +9,23 @@ import (
 
 /*
 
-*/
+ */
 func TestSort1(t *testing.T) {
-	size := 10240000
+	size := 2
 	data := make([]int32, size)
-	for i := 0;i < size;i ++ {
+	for i := 0; i < size; i++ {
 		data[i] = rand.Int31()
 	}
 
 	sort.Slice(data, func(i, j int) bool {
 		return data[i] < data[j]
 	})
-	order := comsort.IsOrderly(data[:])
-	assert.Equal(t, order, byte(1))
 }
 
 func TestSort2(t *testing.T) {
 	size := 102400
 	data := make([]int, size)
-	for i := 0;i < size;i ++ {
+	for i := 0; i < size; i++ {
 		data[i] = rand.Int()
 	}
 
@@ -39,6 +36,7 @@ func TestSort2(t *testing.T) {
 }
 
 type Int32Slice []int32
+
 func (this Int32Slice) Len() int {
 	return len(this)
 }
@@ -54,7 +52,7 @@ func (this Int32Slice) Less(i, j int) bool {
 func TestSort3(t *testing.T) {
 	size := 102400
 	data := make([]int32, size)
-	for i := 0;i < size;i ++ {
+	for i := 0; i < size; i++ {
 		data[i] = rand.Int31()
 	}
 

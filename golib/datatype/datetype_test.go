@@ -1,8 +1,12 @@
 package datatype
 
 import (
+	"encoding/binary"
 	"encoding/hex"
+	"encoding/json"
 	"fmt"
+	"github.com/shopspring/decimal"
+	"math/big"
 	"strconv"
 	"testing"
 	"time"
@@ -109,4 +113,69 @@ func TestInt64ToUint64(t *testing.T) {
 	a := int64(-1)
 	b := uint64(a)
 	fmt.Printf("a: %d, b: %d\n", a, b)
+}
+
+func TestDecimalDiv(t *testing.T) {
+	d1, _ := decimal.NewFromString("4996771978399024063769")
+	denom, _ := decimal.NewFromString("1000000000000000000")
+	//d2 := d1.Div(denom)
+	d2 := d1.DivRound(denom, 32)
+	fmt.Printf("%s\n", d2.String())
+}
+
+func TestDecode(t *testing.T) {
+	aa, _ := hex.DecodeString("f8c69e91e17587c8d4fe7b00000000000000000000000000af331ba8327fbb35b1c4feff000000000100")
+	//aa, _ := hex.DecodeString("f8c69e91e17587c80c2b4a8a040000000000000000000000ffffffffffffffffffffffffffffffff0001")
+	a1 := aa[0]
+	a2 := binary.LittleEndian.Uint64(aa[8:16])
+	a3 := binary.LittleEndian.Uint64(aa[16:24])
+	a4 := binary.LittleEndian.Uint64(aa[24:32])
+	a5 := binary.LittleEndian.Uint64(aa[32:40])
+	a6 := aa[33]
+	a7 := aa[34]
+	fmt.Printf("length: %d, %d %d %d %d %d %d %d", len(aa), a1, a2, a3, a4, a5, a6, a7)
+}
+
+func TestDecode1(t *testing.T) {
+
+	type UpdateEquityReq struct {
+		Uid          int64           `json:"userId,omitempty"`
+		EquityAmount decimal.Decimal `json:"amount,omitempty"`
+		Currency     string          `json:"currency,omitempty"`
+		EquityAt     uint64          `json:"transactTimeNs"`
+	}
+
+	type UpdateEquityMsg struct {
+		EventType string `json:"eventType"`
+		Data      struct {
+			Wallets []UpdateEquityReq `json:"wallets"`
+		} `json:"data"`
+	}
+
+	body := "{\"eventType\":\"EQUITY_WALLET_EVENT\",\"data\":{\"wallets\":[{\"userId\":11374943,\"currency\":\"eth\",\"amount\":\"1\",\"transactTimeNs\":1676270187554873962},{\"userId\":11356509,\"currency\":\"eth\",\"amount\":\"1\",\"transactTimeNs\":1676270961045811156},{\"userId\":11356508,\"currency\":\"eth\",\"amount\":\"1\",\"transactTimeNs\":1676270961045811156}]}}"
+
+	var msg UpdateEquityMsg
+	err := json.Unmarshal([]byte(body), &msg)
+	if err != nil {
+		panic(err)
+	}
+}
+
+func TestSxx(t *testing.T) {
+	{
+		s := new(big.Int).SetBytes([]byte("tr"))
+		fmt.Printf("%d\n", s.Uint64())
+	}
+	{
+		s := new(big.Int).SetBytes([]byte("TransferTransferTransfer"))
+		fmt.Printf("%d\n", s.Uint64())
+	}
+	{
+		s := binary.LittleEndian.Uint64([]byte("tr"))
+		fmt.Printf("%d\n", s)
+	}
+	{
+		s := binary.LittleEndian.Uint64([]byte("TransferTransferTransfer"))
+		fmt.Printf("%d\n", s)
+	}
 }

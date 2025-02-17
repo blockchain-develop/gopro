@@ -37,7 +37,7 @@ func TestSlice1(t *testing.T) {
 
 /*
 slice的data是可以被多个slice共享的，但并没有COW，data被修改，所有引用该data的slice数据都会更新
- */
+*/
 func TestSlice2(t *testing.T) {
 	which := make([]byte, 0)
 	which = append(which, []byte("1234567")...)
@@ -51,7 +51,7 @@ func TestSlice2(t *testing.T) {
 
 /*
 slice的data被多个slice共享，多个slice交易追加数据会出现数据覆写问题
- */
+*/
 func TestSlice3(t *testing.T) {
 	which := make([]byte, 0)
 	which = append(which, []byte("123")...)
@@ -68,7 +68,7 @@ func TestSlice3(t *testing.T) {
 
 /*
 slice的data被多个slice共享，多个slice交易追加数据会出现数据覆写问题，覆写的另一个例子
- */
+*/
 func TestSlice4(t *testing.T) {
 	which := make([]byte, 0)
 	which = append(which, []byte("123456")...)
@@ -82,7 +82,7 @@ func TestSlice4(t *testing.T) {
 
 /*
 slice的data被多个slice共享，但在某个slice发生扩容后，其data区域不再和原来的slice一样，修改数据对原有的slice不再有影响
- */
+*/
 func TestSlice5(t *testing.T) {
 	which := make([]byte, 0)
 	which = append(which, []byte("123")...)
@@ -92,14 +92,14 @@ func TestSlice5(t *testing.T) {
 	which = append(which, []byte("45")...)
 	dumpSlice("dump which      ", &which)
 	dumpSlice("dump which1     ", &which1)
-	which1 = append(which1, []byte("123456")...)
+	which1 = append(which1, []byte("12")...)
 	dumpSlice("dump which      ", &which)
 	dumpSlice("dump which1     ", &which1)
 }
 
 /*
 slice的data共享但没有cow机制的综合例子
- */
+*/
 func TestSlice6(t *testing.T) {
 	which := make([]byte, 0)
 	which = append(which, []byte("abcdef")...)
@@ -132,7 +132,7 @@ func TestSlice6(t *testing.T) {
 */
 func TestSlice7(t *testing.T) {
 	which := make([]byte, 0)
-	for i := 0;i < 500;i ++ {
+	for i := 0; i < 500; i++ {
 		which = append(which, []byte("abcdefgh")...)
 		fmt.Printf("size: %d\t, cap: %d\t\n", len(which), cap(which))
 	}
@@ -140,7 +140,7 @@ func TestSlice7(t *testing.T) {
 
 func TestSlice8(t *testing.T) {
 	which := make([]byte, 0)
-	for i := 0;i < 500;i ++ {
+	for i := 0; i < 500; i++ {
 		which = append(which, []byte("abcde")...)
 		fmt.Printf("size: %d\t, cap: %d\t\n", len(which), cap(which))
 	}
@@ -148,7 +148,7 @@ func TestSlice8(t *testing.T) {
 
 func TestSlice9(t *testing.T) {
 	which := make([]byte, 0)
-	for i := 0;i < 128;i ++ {
+	for i := 0; i < 128; i++ {
 		which = append(which, []byte("abcdefgh")...)
 		fmt.Printf("size: %d\t, cap: %d\t\n", len(which), cap(which))
 	}
@@ -158,7 +158,7 @@ func TestSlice9(t *testing.T) {
 
 func TestSlice10(t *testing.T) {
 	which := make([]byte, 0)
-	for i := 0;i < 8;i ++ {
+	for i := 0; i < 8; i++ {
 		which = append(which, []byte("abcdefgh")...)
 		fmt.Printf("size: %d\t, cap: %d\t\n", len(which), cap(which))
 		dumpSlice("dump which      ", &which)
@@ -171,7 +171,7 @@ func TestSlice10(t *testing.T) {
 
 func TestSlice11(t *testing.T) {
 	which := make([]byte, 0)
-	for i := 0;i < 100;i ++ {
+	for i := 0; i < 100; i++ {
 		which = append(which, []byte("abcdefgh")...)
 		fmt.Printf("size: %d\t, cap: %d\t\n", len(which), cap(which))
 	}
@@ -244,7 +244,7 @@ func TestSlice14(t *testing.T) {
 */
 func TestSlice15(t *testing.T) {
 	which1 := make([]byte, 0, 32)
-	for i := 0;i < 128;i ++ {
+	for i := 0; i < 128; i++ {
 		which1 = append(which1, []byte("abcdefgh")...)
 	}
 	dumpSlice("dump which1      ", &which1)
@@ -259,7 +259,7 @@ func TestSlice15(t *testing.T) {
 */
 func TestSlice16(t *testing.T) {
 	which1 := make([]byte, 0, 32)
-	for i := 0;i < 128;i ++ {
+	for i := 0; i < 128; i++ {
 		which1 = append(which1, []byte("abcdefgh")...)
 	}
 	dumpSlice("dump which1      ", &which1)
@@ -288,21 +288,21 @@ func TestSlice17(t *testing.T) {
 */
 func TestSlice18(t *testing.T) {
 	which := make([]byte, 10, 10)
-	for i := 0;i < 5;i ++ {
+	for i := 0; i < 5; i++ {
 		which[i] = byte(i)
 	}
-	for i := 0;i < 5;i ++ {
-		which[10 + i] = byte(i)
+	for i := 0; i < 5; i++ {
+		which[10+i] = byte(i)
 	}
 }
 
 func TestSlice19(t *testing.T) {
 	which := make([]byte, 10, 20)
-	for i := 0;i < 5;i ++ {
+	for i := 0; i < 5; i++ {
 		which[i] = byte(i)
 	}
-	for i := 0;i < 5;i ++ {
-		which[10 + i] = byte(i)
+	for i := 0; i < 5; i++ {
+		which[10+i] = byte(i)
 	}
 }
 
@@ -310,17 +310,17 @@ func TestSlice19(t *testing.T) {
 以下测试指针的slice和对象slice
 */
 type AAA struct {
-	aaa    int
-	bbb    int
+	aaa int
+	bbb int
 }
 
 func TestSlice20(t *testing.T) {
 	test1 := []*AAA{
-		&AAA {
+		&AAA{
 			aaa: 0,
 			bbb: 0,
 		},
-		&AAA {
+		&AAA{
 			aaa: 1,
 			bbb: 1,
 		},
@@ -354,12 +354,12 @@ func TestSlice21(t *testing.T) {
 	}
 
 	/*
-	// ②
-	if a[:] == b[:] {
-		fmt.Println("equal")
-	} else {
-		fmt.Println("not equal")
-	}
+		// ②
+		if a[:] == b[:] {
+			fmt.Println("equal")
+		} else {
+			fmt.Println("not equal")
+		}
 	*/
 }
 
@@ -375,8 +375,18 @@ func TestSlice23(t *testing.T) {
 	aaa[0] = 1
 	fmt.Printf("a == b ? %v", aaa == bbb)
 	/*
-	ccc := make([]byte, 0)
-	ddd := make([]byte, 0)
-	fmt.Printf("c == d ? %v", ccc == ddd)
+		ccc := make([]byte, 0)
+		ddd := make([]byte, 0)
+		fmt.Printf("c == d ? %v", ccc == ddd)
 	*/
+}
+
+func TestSlice100(t *testing.T) {
+	which := make([]byte, 0)
+	which = append(which, []byte("123")...)
+	which1 := make([]byte, 0)
+	which1 = append(which1, which...)
+	which1[0] = byte(0)
+	//
+	fmt.Printf("%s, %s\n", string(which), string((which1)))
 }

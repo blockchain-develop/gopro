@@ -1,0 +1,3 @@
+package abort
+
+func TestAbort()

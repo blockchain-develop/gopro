@@ -14,11 +14,11 @@ import (
 func test1() int {
 	var i int
 	defer func() {
-		i ++
+		i++
 		fmt.Printf("aaa: %d\n", i)
 	}()
 	defer func() {
-		i ++
+		i++
 		fmt.Printf("bbb: %d\n", i)
 	}()
 	return i
@@ -31,11 +31,11 @@ func TestDefer1(t *testing.T) {
 
 func test2() (i int) {
 	defer func() {
-		i ++
+		i++
 		fmt.Printf("aaa: %d\n", i)
 	}()
 	defer func() {
-		i ++
+		i++
 		fmt.Printf("bbb: %d\n", i)
 	}()
 	return i
@@ -44,4 +44,24 @@ func test2() (i int) {
 func TestDefer2(t *testing.T) {
 	i := test2()
 	fmt.Printf("ccc: %d\n", i)
+}
+
+func get(x int) (a int, y int) {
+	x += 1
+	defer func() {
+		x += 1
+		y = y
+	}()
+	defer func() {
+		x += 1
+		y = x
+	}()
+	x += 1
+	y = 0
+	return x, y
+}
+
+func TestDefer100(t *testing.T) {
+	x, y := get(0)
+	fmt.Printf("%d %d\n", x, y)
 }
